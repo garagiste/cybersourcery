@@ -5,6 +5,7 @@ module Cybersourcery
       '101' => 'Declined: The request is missing one or more required fields.',
       '102' => 'Declined: One or more fields in the request contains invalid data',
       '104' => 'Declined: An identical authorization request has been submitted within the past 15 minutes',
+      '110' => 'Partial amount was approved',
       '150' => 'Error: General system failure. Please wait a few minutes and try again.',
       '151' => 'Error: The request was received but there was a server timeout. Please wait a few minutes and try again.',
       '152' => 'Error: The request was received, but a service did not finish running in time. Please wait a few minutes and try again.',
@@ -19,7 +20,9 @@ module Cybersourcery
       '209' => 'Declined: American Express Card Identification Digits (CID) did not match. Please verify your card information, or try a different card.',
       '210' => 'Declined: The card has reached the credit limit. Please try a different card.',
       '211' => 'Declined: Invalid card verification number. Please verify your card information, or try a different card.',
+      '220' => 'Declined: Generic decline',
       '221' => 'Declined: The customer matched an entry on the processors negative file.',
+      '222' => 'Declined: The customer\'s account is frozen',
       '230' => 'Declined: The authorization request was approved by the issuing bank but declined by CyberSource because it did not pass the card verification (CV) check',
       '231' => 'Declined: Invalid account number, or the card type is not valid for the number provided. Please try a different card.',
       '232' => 'Declined: The card type is not accepted by the payment processor.  Please try a different card.',
@@ -36,6 +39,7 @@ module Cybersourcery
       '243' => 'Declined: The transaction has already been settled or reversed',
       '246' => 'Declined: The capture or credit is not voidable because the capture or credit information has already been submitted to your processor. Or, you requested a void for a type of transaction that cannot be voided',
       '247' => 'Declined: You requested a credit for a capture that was previously voided',
+      '248' => 'Declined: The boleto request was declined by your processor.',
       '250' => 'Error: The request was received, but there was a timeout at the payment processor. Please try again in a few minutes.',
       '251' => "Declined: The Pinless Debit card's use frequency or maximum amount per use has been exceeded.",
       '254' => 'Declined: Account is prohibited from processing stand-alone refunds.',
@@ -56,9 +60,12 @@ module Cybersourcery
       '476' => 'Error: Encountered a Payer Authentication problem. Payer could not be authenticated.',
       '480' => 'The order is marked for review by the Cybersource Decision Manager',
       '481' => 'Error: The order has been rejected by the Cybersource Decision Manager',
-      '520' => 'Declined: The authorization request was approved by the issuing bank but declined by CyberSource based on your Smart Authorization settings.'
-    }
-
+      '520' => 'Declined: The authorization request was approved by the issuing bank but declined by CyberSource based on your Smart Authorization settings.',
+      '700' => 'Restricted: The customer matched the Denied Parties List',
+      '701' => 'Restricted: Export bill_country/ship_country match',
+      '702' => 'Restricted: Export email_country match',
+      '703' => 'Restricted: Export hostname_country/ip_country match'
+}
     def self.run(reason_code)
       REASON_CODE_EXPLANATIONS.fetch(
         reason_code,
