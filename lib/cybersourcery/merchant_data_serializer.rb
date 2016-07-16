@@ -24,12 +24,13 @@ module Cybersourcery
     end
 
     def deserialize(params)
-      merchant_data = params.select { |k,v| k =~ /^merchant_defined_data/ }.symbolize_keys
+      merchant_data = params.select { |k,v| k =~ /^merchant_defined_data/ }
       merchant_data_string = ''
 
       # it's important to reassemble the data in the right order!
       merchant_data.length.times do |i|
-        merchant_data_string << merchant_data["merchant_defined_data#{i+1}".to_sym]
+        #string or symbol
+        merchant_data_string << merchant_data["merchant_defined_data#{i+1}"] || merchant_data["merchant_defined_data#{i+1}".to_sym]
       end
 
       JSON.parse(merchant_data_string).symbolize_keys
