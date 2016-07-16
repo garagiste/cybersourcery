@@ -24,7 +24,8 @@ module Cybersourcery
     end
 
     def deserialize(params)
-      merchant_data = params.select { |k,v| k =~ /^merchant_defined_data/ }
+      hash_params = params.to_h
+      merchant_data = hash_params.select { |k,v| k =~ /^merchant_defined_data/ }
       merchant_data_string = ''
 
       # it's important to reassemble the data in the right order!
