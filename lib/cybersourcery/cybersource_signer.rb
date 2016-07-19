@@ -35,9 +35,8 @@ module Cybersourcery
     end
 
     def add_signable_fields(params)
-      @signable_fields.merge! params.to_h.delete_if { |k,v|
-        @profile.unsigned_field_names.include?(k) || IGNORE_FIELDS.include?(k)||
-          @profile.unsigned_field_names.include?(k.to_sym) || IGNORE_FIELDS.include?(k.to_sym)
+      @signable_fields.merge! params.symbolize_keys.delete_if { |k,v|
+        @profile.unsigned_field_names.include?(k) || IGNORE_FIELDS.include?(k)
       }
     end
 
