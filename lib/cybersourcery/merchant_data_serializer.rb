@@ -30,7 +30,11 @@ module Cybersourcery
       # it's important to reassemble the data in the right order!
       merchant_data.length.times do |i|
         #string or symbol
-        merchant_data_string << merchant_data["merchant_defined_data#{i+1}"] || merchant_data["merchant_defined_data#{i+1}".to_sym]
+        if merchant_data["merchant_defined_data#{i+1}"]
+          merchant_data_string << merchant_data["merchant_defined_data#{i+1}"]
+        elsif merchant_data["merchant_defined_data#{i+1}".to_sym]
+          merchant_data_string << merchant_data["merchant_defined_data#{i+1}".to_sym]
+        end
       end
       JSON.parse(merchant_data_string).symbolize_keys
     end
